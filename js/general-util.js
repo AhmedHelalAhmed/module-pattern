@@ -1,4 +1,4 @@
-import {doc} from "./dom";
+import {doc} from "./dom.js";
 
 const domReady = function (funct) {
     doc.addEventListener('DOMContentLoaded', function () {
