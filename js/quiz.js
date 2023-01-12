@@ -1,46 +1,38 @@
-var MAINAPP = (function (nsp) {
+import {breakOut} from './string.js'
+import {
+    $, data, addClass, removeClass,
+} from './dom.js'
 
-    // sub module
-    var sub = nsp.quiz = nsp.quiz || {};
+const checkAnswer = function (value) {
+    let ans, correct, result;
 
-    // dependencies
-    var dom = nsp.dom;
-    var string = nsp.string;
+    if (value !== "") {
+        ans = breakOut(data($('#q01'), 'answer'), ",");
+        correct = ans.every(function (val) {
+            return (value.toUpperCase().indexOf(val.toUpperCase()) > -1);
+        });
+        result = (correct) ? 'correct' : 'incorrect';
+        displayFeedback(result);
+    } else {
+        displayFeedback('no-answer');
+    }
+}
 
+const displayFeedback = function (result) {
+    const feedback = $('.feedback.' + result);
+    addClass(feedback, 'visible');
+}
 
-    var checkAnswer = function (value) {
-            var ans,
-                correct,
-                result;
-
-            if (value !== "") {
-                ans = string.breakOut(dom.data(dom.$('#q01'), 'answer'), ",");
-                correct = ans.every(function (val) {
-                    return (value.toUpperCase().indexOf(val.toUpperCase()) > -1);
-                });
-                result = (correct) ? 'correct' : 'incorrect';
-                displayFeedback(result);
-            } else {
-                displayFeedback('no-answer');
-            }
-        },
-        displayFeedback = function (result) {
-            var feedback = dom.$('.feedback.' + result);
-            dom.addClass(feedback, 'visible');
-        },
-        hideFeedback = function () {
-            var feedback = dom.$('.feedback.visible');
-            dom.removeClass(feedback, 'visible');
-        },
-        initialize = function () {
-            hideFeedback();
-        };
+const hideFeedback = function () {
+    const feedback = $('.feedback.visible');
+    removeClass(feedback, 'visible');
+}
+const initialize = function () {
+    hideFeedback();
+};
 
 
-    // public methods
-    sub.initialize = initialize;
-    sub.checkAnswer = checkAnswer;
+export {
+    initialize, checkAnswer
+}
 
-    return nsp;
-
-})(MAINAPP || {});
