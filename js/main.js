@@ -3,8 +3,7 @@ import {
     assignEvent,
     $
 } from './dom.js';
-import {initialize, checkAnswer} from './quiz.js'
-
+import {initialize, checkAnswer} from './quiz.js';
 
 const domReady = function (funct) {
     doc.addEventListener('DOMContentLoaded', function () {
@@ -14,14 +13,12 @@ const domReady = function (funct) {
     }, false);
 };
 
-
 const initQuiz = function () {
     assignEvent($('.fill-in-submit.btn-primary'), 'click', function () {
         initialize();
         checkAnswer($('#q01_ans')[0].value);
     });
 };
-
 
 /*
 Setup

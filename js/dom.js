@@ -1,4 +1,4 @@
-import {numChar} from './string.js'
+import {numChar} from './string.js';
 
 const doc = document;
 const $ = function (domElement) {
@@ -80,7 +80,6 @@ const removeClass = function (de, cls) {
     }
 };
 
-
 export {
     $,
     assignEvent,
@@ -88,4 +87,4 @@ export {
     addClass,
     removeClass,
     doc
-}
+};
