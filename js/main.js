@@ -1,17 +1,9 @@
 import {
-    doc,
     assignEvent,
     $
 } from './dom.js';
 import {initialize, checkAnswer} from './quiz.js';
-
-const domReady = function (funct) {
-    doc.addEventListener('DOMContentLoaded', function () {
-        if (typeof funct === "function") {
-            funct();
-        }
-    }, false);
-};
+import domReady from './general-util.js';
 
 const initQuiz = function () {
     assignEvent($('.fill-in-submit.btn-primary'), 'click', function () {
